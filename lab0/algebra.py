@@ -186,7 +186,7 @@ def do_multiply(expr1, expr2):
 
     elif isinstance(expr1, Sum) and isinstance(expr2, Product):
         # Exactly analagous to the function above
-        out = one_sum_one_product(expr2, expr1)
+        out = one_product_one_sum(expr1, expr2)
 
     elif isinstance(expr1, Sum) and isinstance(expr2, Sum):
         # Should Multiply Both Terms with the product
@@ -215,3 +215,9 @@ def two_sums(expr1, expr2):
     output = Sum(new_terms)
     return output
 
+def one_product_one_sum(p_product, p_sum):
+    new_terms = []
+    for term in p_sum:
+        new_terms.append(Product([term] + p_product))
+    output = Sum(new_terms)
+    return output
